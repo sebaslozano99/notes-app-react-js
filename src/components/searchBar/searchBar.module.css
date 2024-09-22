@@ -1,0 +1,28 @@
+.form {
+    padding: 1em 3em;
+    position: relative;
+    /* border: 2px solid red; */
+}
+
+
+.form__input {
+    width: 100%;
+    padding: 10px 35px;
+    border-radius: 10px;
+    border-style: none;
+    background-color: #E6E6E6;
+    outline: none;
+}
+
+
+.button {
+    background-color: transparent;
+    border-style: none;
+    position: absolute;
+    left: 55px;
+    top: 35%;
+}
+
+.button i {
+    color: rgb(76, 76, 76);
+}
