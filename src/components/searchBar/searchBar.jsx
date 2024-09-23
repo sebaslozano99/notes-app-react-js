@@ -12,7 +12,7 @@ function SearchBar(){
             <input type="text" placeholder="type to search"  className={style.form__input} value={search} onChange={(e) => setSearch(e.target.value)}  />
             
             <button className={style.button} >
-                <i class='bx bx-search bx-sm'></i>
+                <i className='bx bx-search bx-sm'></i>
             </button>
 
         </form>

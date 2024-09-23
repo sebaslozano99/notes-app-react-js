@@ -8,3 +8,13 @@
     font-family: "Roboto", sans-serif;
 }
 
+
+.container {
+    background-color: #fff;
+    height: 100vh;
+    transition: all ease-in-out .3s;
+}
+
+.dark {
+    background-color: #000;
+}

@@ -1,11 +1,13 @@
 import style from "./header.module.css";
 
-function Header(){
+
+
+function Header({isDark, onDarkMode}){
     return(
         <header className={style.header} >
-            <h1>I Notes</h1>
+            <h1 className={isDark ?         style.logoDark : ""} >I Notes</h1>
 
-            <button>Toggle mode</button>
+            <button onClick={onDarkMode} className={style.modeBtn} >Toggle mode</button>
         </header>
     )
 }

@@ -1,0 +1,34 @@
+.note{
+    border-radius: 15px;
+    background-color: #FFF57F;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* list-style: none; */
+}
+
+
+.note__text {
+    /* border: 1px solid red; */
+    height: 90%;
+}
+
+
+.note__div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+.note__div_button {
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+    transition: transform ease-in-out .3s;
+}
+
+.note__div_button:hover {
+    transform: scale(1.09);
+}
