@@ -5,14 +5,37 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1em;
     /* list-style: none; */
 }
 
 
-.note__text {
+
+
+
+/* STYLE BELOW WILL BE APPLIED TO TEXTAREA ONCE USER DECIDES TO UPDATE THE SELECTED NOT */
+.note__textArea {
+    outline: none;
+    resize: none;
+    font-size: 1em;
+    background-color: transparent;
+    border-style: none;
     /* border: 1px solid red; */
     height: 90%;
 }
+
+
+
+
+
+
+
+.note__text:hover {
+    cursor:text;
+}
+
+
+
 
 
 .note__div {
@@ -22,12 +45,31 @@
     /* border: 1px solid red; */
 }
 
-.note__div_button {
+
+.note__div__btnContainer{
+    /* border: 2px dashed brown; */
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+
+.btnContainer__save{
+    cursor: pointer;
+    background-color: #aeaeae;
+    border-style: none;
+    padding: 5px 15px;
+    border-radius: 15px;
+}
+
+
+.btnContainer__delete {
     background-color: transparent;
     border-style: none;
     cursor: pointer;
     transition: transform ease-in-out .3s;
 }
+
 
 .note__div_button:hover {
     transform: scale(1.09);
