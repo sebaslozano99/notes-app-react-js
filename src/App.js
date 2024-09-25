@@ -7,6 +7,7 @@ import NoteItem from "./components/noteItem/NoteItem";
 const initialState = {
   notes: JSON.parse(localStorage.getItem("notes")) ?? [],
   isDark: false,
+  search: "",
 }
 
 
@@ -42,6 +43,12 @@ function reducer(state, action){
         isDark: !state.isDark,
       }
     
+    case "setSearch":
+      return {
+        ...state,
+        search: action.payload,
+      }
+    
     default: 
       throw new Error("Unknown action type!");
   }
@@ -51,7 +58,7 @@ const TEXT_AREA_LIMIT = 500;
 
 
 function App(){
-  const [{notes, isDark}, dispatch] = useReducer(reducer, initialState);
+  const [{notes, isDark, search}, dispatch] = useReducer(reducer, initialState);
 
 
   
@@ -84,11 +91,11 @@ function App(){
 
       <Header isDark={isDark} dispatch={dispatch} />
 
-      <SearchBar />
+      <SearchBar search={search} dispatch={dispatch} />
 
       <NotesContainer notes={notes} TEXT_AREA_LIMIT={TEXT_AREA_LIMIT} onAddNote={handleAddNote} >
         {
-          notes.map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
+          notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase())).map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
         }
       </NotesContainer>
       

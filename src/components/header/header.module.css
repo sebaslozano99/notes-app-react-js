@@ -16,4 +16,13 @@
 
 .modeBtn {
     cursor: pointer;
+    background-color: transparent;
+    border-style: none;
+    outline: none;
 }
+
+
+.modeIcon{
+    color: #fff;
+}
+

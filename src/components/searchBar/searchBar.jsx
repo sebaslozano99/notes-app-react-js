@@ -1,15 +1,12 @@
-import { useState } from "react";
 import style from "./searchBar.module.css";
 
 
-function SearchBar(){
-
-    const [search, setSearch] = useState("");
+function SearchBar({search, dispatch}){
 
     return (
         <form className={style.form} >
 
-            <input type="text" placeholder="type to search by title..."  className={style.form__input} value={search} onChange={(e) => setSearch(e.target.value)}  />
+            <input type="text" placeholder="type to search by title..."  className={style.form__input} value={search} onChange={(e) => dispatch({type: "setSearch", payload: e.target.value})}  />
             
             <button className={style.button} >
                 <i className='bx bx-search bx-sm'></i>
