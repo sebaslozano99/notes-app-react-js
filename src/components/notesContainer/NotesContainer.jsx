@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import styles from "./notesContainer.module.css";
-import NoteItem from '../noteItem/NoteItem';
 import { v4 as uuidv4 } from 'uuid';
+// import NoteItem from '../noteItem/NoteItem';
 
 
-const TEXT_AREA_LIMIT = 500;
 
 
 
-function NotesContainer ({notes, onAddNote, onDeleteNote, onSetAsUpdating, onUpdateNote}){
+function NotesContainer ({onAddNote, TEXT_AREA_LIMIT, children}){
   
   const [title, setTitle] = useState("");
   const [textArea, setTextArea] = useState("");
@@ -19,7 +18,7 @@ function NotesContainer ({notes, onAddNote, onDeleteNote, onSetAsUpdating, onUpd
   function submitNewNote(e){
     e.preventDefault();
 
-    if(!textArea) return;
+    if(!textArea || !title) return;
 
     const currentDate = new Date();
 
@@ -49,15 +48,13 @@ function NotesContainer ({notes, onAddNote, onDeleteNote, onSetAsUpdating, onUpd
   return (
     <main className={styles.main} >
 
-      {
-        notes.map((note) => <NoteItem note={note} key={note.id} onDeleteNote={onDeleteNote} onSetAsUpdating={onSetAsUpdating} textAreaLimit={TEXT_AREA_LIMIT} onUpdateNote={onUpdateNote} />)
-      }
-
+      { children }
+      
       <form className={styles.note} onSubmit={submitNewNote} >
 
-        <input type="text" className={styles.note__title} placeholder='Type to add title...' value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input type="text" className={styles.note__title} placeholder='Type to add title...' value={title} onChange={(e) => setTitle(e.target.value)} required />
         
-        <textarea cols={50} rows={100} maxLength={TEXT_AREA_LIMIT} placeholder='type to add a note...' spellCheck={false} className={styles.note__textArea} value={textArea} onChange={updateRemainingCharacters} ></textarea>
+        <textarea cols={50} rows={100} maxLength={TEXT_AREA_LIMIT} placeholder='type to add a note...' spellCheck={false} className={styles.note__textArea} value={textArea} onChange={updateRemainingCharacters} required ></textarea>
 
         <div className={styles.note__infoContainer} >
 

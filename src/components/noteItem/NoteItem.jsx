@@ -3,21 +3,10 @@ import styles from "./noteItem.module.css";
 
 
 
-function NoteItem ({note, onDeleteNote, onSetAsUpdating, textAreaLimit, onUpdateNote}){
+function NoteItem ({note, textAreaLimit, onDeleteNote, onUpdatingNote, onUpdateNote}){
 
   const [textToUpdate, setTextToUpdate] = useState(note.note);
 
-  // const textAreaEl = useRef(null);
-
-  // useEffect(() => {
-  //   if(note.isUpdating) textAreaEl.current?.focus();
-
-  // }, [note.isUpdating])
-
-
-  function updateNote(){
-    onUpdateNote(note.id, textToUpdate);
-  }
 
   return (
     <div className={styles.note} >
@@ -25,11 +14,9 @@ function NoteItem ({note, onDeleteNote, onSetAsUpdating, textAreaLimit, onUpdate
 
       { 
         !note.isUpdating ?
-          <textarea cols={50} rows={100} className={styles.note__textArea} maxLength={textAreaLimit} placeholder='type to add a note...' spellCheck={false} onClick={() => onSetAsUpdating(note.id)} >{note.note}</textarea>
+          <textarea cols={50} rows={100} className={styles.note__textArea} maxLength={textAreaLimit} placeholder='type to add a note...' spellCheck={false} onClick={() => onUpdatingNote(note.id)} defaultValue={note.note} ></textarea>
         :
-          <textarea cols={50} rows={100} className={styles.note__textArea} maxLength={textAreaLimit} placeholder='type to add a note...' spellCheck={false} value={textToUpdate} onChange={(e) => setTextToUpdate(e.target.value)} >
-
-          </textarea>
+          <textarea cols={50} rows={100} className={styles.note__textArea} maxLength={textAreaLimit} placeholder='type to add a note...' spellCheck={false} value={textToUpdate} onChange={(e) => setTextToUpdate(e.target.value)} > </textarea>
       }
       
       <div className={styles.note__div} >
@@ -39,7 +26,7 @@ function NoteItem ({note, onDeleteNote, onSetAsUpdating, textAreaLimit, onUpdate
 
         <div className={styles.note__div__btnContainer} >
 
-          { note.isUpdating && <button className={styles.btnContainer__save} onClick={updateNote} >Save</button>}
+          { note.isUpdating && <button className={styles.btnContainer__save} onClick={() => onUpdateNote(note.id, textToUpdate)} >Save</button>}
 
           <button  className={styles.btnContainer__delete} onClick={() => onDeleteNote(note.id)} >
             <i className='bx bxs-trash-alt bx-sm'></i>
