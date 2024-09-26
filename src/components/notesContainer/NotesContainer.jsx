@@ -28,6 +28,7 @@ function NotesContainer ({onAddNote, TEXT_AREA_LIMIT, children}){
       note: textArea,
       date: currentDate.toLocaleDateString(),
       isUpdating: false,
+      category: "all"
     }
 
     onAddNote(newNote);

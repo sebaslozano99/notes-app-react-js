@@ -1,8 +1,16 @@
 import { useReducer } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
+import Homepage from "./pages/homepage/Homepage";
+import Plans from "./pages/plans/Plans";
+import Notes from "./pages/notes/Notes";
+
 import Header from "./components/header/Header";
-import NotesContainer from "./components/notesContainer/NotesContainer";
-import SearchBar from "./components/searchBar/SearchBar";
-import NoteItem from "./components/noteItem/NoteItem";
+
+
+
+
 
 const initialState = {
   notes: JSON.parse(localStorage.getItem("notes")) ?? [],
@@ -54,7 +62,12 @@ function reducer(state, action){
   }
 }
 
+
+
 const TEXT_AREA_LIMIT = 500;
+
+
+
 
 
 function App(){
@@ -87,18 +100,17 @@ function App(){
 
 
   return (
-    <div className={isDark ? "container dark" : "container"} >
-
-      <Header isDark={isDark} dispatch={dispatch} />
-
-      <SearchBar search={search} dispatch={dispatch} />
-
-      <NotesContainer notes={notes} TEXT_AREA_LIMIT={TEXT_AREA_LIMIT} onAddNote={handleAddNote} >
-        {
-          notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase())).map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
-        }
-      </NotesContainer>
+    <div className={isDark ? "container dark" : "container"}>
       
+      <BrowserRouter>
+        <Header isDark={isDark} dispatch={dispatch} />
+        <Routes>
+          <Route path="/" element={ <Homepage /> } />
+          <Route path="/plans" element={ <Plans /> } />
+          <Route path="/notes" element={ <Notes isDark={isDark} search={search} notes={notes} handleAddNote={handleAddNote} handleDeleteNote={handleDeleteNote} handleSetAsUpdating={handleSetAsUpdating} handleUpdateNote={handleUpdateNote} TEXT_AREA_LIMIT={TEXT_AREA_LIMIT} dispatch={dispatch} /> } />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   )
 }

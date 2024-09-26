@@ -1,17 +1,61 @@
 
 
 .header {
-    /* border: 1px solid red;    */
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1em 3em;
+    /* background-color: #fff; */
+    transition: all ease-in-out .3s;
+}
+
+.logo{
+    text-decoration: none;
+    color: #000;
 }
 
 
 .logoDark {
+    text-decoration: none;
     color: #fff;
 }
+
+
+
+
+
+
+.nav {
+    /* border: 3px dotted green; */
+    display: flex;
+    align-items: center;
+    gap: 4em;
+}
+
+.nav ul {
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    gap: 25px;
+}
+
+.a{
+    text-decoration: inherit;
+    color: #000;
+}
+
+.aDark {
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
 
 
 .modeBtn {
