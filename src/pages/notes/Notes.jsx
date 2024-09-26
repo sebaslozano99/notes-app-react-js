@@ -12,7 +12,7 @@ export default function Notes({search, notes, handleAddNote, handleDeleteNote, h
 
         <NotesContainer notes={notes} TEXT_AREA_LIMIT={TEXT_AREA_LIMIT} onAddNote={handleAddNote} >
           {
-            notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase())).map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
+            notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()) || note.date.includes(search)).map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
           }
         </NotesContainer>
         
