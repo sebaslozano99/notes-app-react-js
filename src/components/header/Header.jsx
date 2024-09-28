@@ -1,9 +1,13 @@
 import { Link, NavLink } from "react-router-dom";
 import style from "./header.module.css";
+import { useNotes } from "../../context/NotesContext";
 
 
 
-function Header({isDark, dispatch}){
+function Header(){
+
+    const { isDark, dispatch } = useNotes();
+
     return(
         <header className={`${style.header}`} >
             <h1 >

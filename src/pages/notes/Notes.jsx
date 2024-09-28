@@ -1,21 +1,24 @@
 import SearchBar from "../../components/searchBar/SearchBar";
 import NotesContainer from "../../components/notesContainer/NotesContainer";
 import NoteItem from "../../components/noteItem/NoteItem";
+import { useNotes } from "../../context/NotesContext";
 
 
-export default function Notes({search, notes, handleAddNote, handleDeleteNote, handleSetAsUpdating, handleUpdateNote, TEXT_AREA_LIMIT, dispatch}) {
+export default function Notes() {
+
+  const { notes, search } = useNotes();
+
   return (
     <>
+      <SearchBar />
 
+      <NotesContainer >
+        {
+          notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()) || note.date.includes(search)).map((note) => 
+          <NoteItem note={note} key={note.id} />  )
+        }
+      </NotesContainer> 
+    </>
 
-        <SearchBar search={search} dispatch={dispatch} />
-
-        <NotesContainer notes={notes} TEXT_AREA_LIMIT={TEXT_AREA_LIMIT} onAddNote={handleAddNote} >
-          {
-            notes.filter((note) => note.title.toLowerCase().includes(search.toLowerCase()) || note.date.includes(search)).map((note) => <NoteItem note={note} key={note.id} textAreaLimit={TEXT_AREA_LIMIT} onDeleteNote={handleDeleteNote} onUpdatingNote={handleSetAsUpdating} onUpdateNote={handleUpdateNote}  />)
-          }
-        </NotesContainer>
-        
-      </>
   )
 }

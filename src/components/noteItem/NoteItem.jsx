@@ -1,15 +1,23 @@
 import { useState } from "react";
 import styles from "./noteItem.module.css";
+import { useNotes } from "../../context/NotesContext";
 
 
 
-function NoteItem ({note, textAreaLimit, onDeleteNote, onUpdatingNote, onUpdateNote}){
+function NoteItem ({note}){
 
   const [textToUpdate, setTextToUpdate] = useState(note.note);
 
+  const { 
+    TEXT_AREA_LIMIT : textAreaLimit, 
+    handleDeleteNote: onDeleteNote, 
+    handleSetAsUpdating: onUpdatingNote, 
+    handleUpdateNote: onUpdateNote   
+  } = useNotes();
 
   return (
     <div className={styles.note} >
+
       <h2>{note.title}</h2>
 
       { 
@@ -22,7 +30,6 @@ function NoteItem ({note, textAreaLimit, onDeleteNote, onUpdatingNote, onUpdateN
       <div className={styles.note__div} >
 
         <p>{note.date}</p>
-
 
         <div className={styles.note__div__btnContainer} >
 

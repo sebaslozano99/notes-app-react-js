@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import styles from "./notesContainer.module.css";
+import { useNotes } from '../../context/NotesContext';
 import { v4 as uuidv4 } from 'uuid';
-// import NoteItem from '../noteItem/NoteItem';
+import styles from "./notesContainer.module.css";
 
 
 
 
 
-function NotesContainer ({onAddNote, TEXT_AREA_LIMIT, children}){
+function NotesContainer ({children}){
   
+  const { onAddNote, TEXT_AREA_LIMIT } = useNotes();
   const [title, setTitle] = useState("");
   const [textArea, setTextArea] = useState("");
   const [remainingCharacters, setRemainingCharacters] = useState(TEXT_AREA_LIMIT);

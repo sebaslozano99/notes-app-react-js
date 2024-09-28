@@ -1,7 +1,10 @@
+import { useNotes } from "../../context/NotesContext";
 import style from "./searchBar.module.css";
 
 
-function SearchBar({search, dispatch}){
+function SearchBar(){
+
+    const { search, dispatch } = useNotes();
 
     return (
         <form className={style.form} >
